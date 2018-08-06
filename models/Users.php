@@ -117,9 +117,9 @@ class Users extends model
 			$stmt->bindParam(":ID", $id);
 			$stmt->execute();
 			if($stmt->rowCount() > 0){
-				$this->userInfo = $stmt->fetch();
-				$this->permissions = new Permissions();
-				$this->permissions->setGroup($this->userInfo['id_group'], $this->userInfo['id_company']);
+			  $this->userInfo = $stmt->fetch();
+			  $this->permissions = new Permissions();
+			  $this->permissions->setGroup($this->userInfo['id_group'], $this->userInfo['id_company']);
 			}
 		}
 	}
