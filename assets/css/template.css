@@ -1,0 +1,195 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	font-family: Arial;
+}
+
+.left-menu {
+	width: 200px;
+	background-color: #1F232A;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.container {
+
+}
+
+.container .top {
+	height: 40px;
+	padding-left: 200px;
+	background-color: #232830;
+	color: #FFF;
+	font-size: 15px;
+}
+
+.top-right {
+	float: right;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.top-right a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.company-name {
+	height: 100px;
+	line-height: 100px;
+	font-size: 18px;
+	color: #FFF;
+	text-align: center;
+}
+
+.menu-area {
+	color: #FFF;
+}
+
+.menu-area ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.menu-area li {
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	padding-left: 30px;
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+	background-position: 8px 13px;
+}
+
+.menu-area li:nth-child(1) {
+	background-image: url('../img/home.png');
+}
+
+.menu-area li:nth-child(2) {
+	background-image: url('../img/key.png');
+}
+
+.menu-area li:hover {
+	background-color: #000;
+}
+
+.menu-area li a {
+	color: #FFF;
+	text-decoration: none;
+	display: block;
+}
+
+.container {
+	padding-left: 200px;
+}
+
+.area-main {
+	padding: 15px;
+}
+
+.tab-area {
+	height: 40px;
+}
+
+.tab-item {
+	float: left;
+	width: 50%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border-bottom: 1px solid #000;
+	background-color: #EEE;
+	cursor: pointer;
+}
+
+.active-tab {
+	border-bottom: 1px solid #FFF;
+	background-color: #FFF
+}
+
+.tab-body {
+	display: none;
+	padding-top: 20px;
+}
+
+/* === DEFAULT === */
+input[type=text],
+input[type=password],
+input[type=email],
+select {
+	width: 98%;
+	height: 30px;
+	font-size: 13px;
+	outline: none;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-top: 5px;
+}
+
+input[type=submit], button, .button {
+	border: 0;
+	background-color: #224074;
+	color: #FFF;
+	height: 40px;
+	border-radius: 3px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 13px;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 40px;
+}
+
+.button-small {
+	height: 30px;
+	line-height: 30px;
+}
+
+.button a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+table {
+	margin-top: 10px;
+}
+
+table th {
+	height: 40px;
+	line-height: 40px;
+	background-color: #DDD;
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+table td {
+	height: 40px;
+	line-height: 40px;
+	background-color: #EEE;
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+/* END DEFAULT */
+
+.permissions-item {
+	height: 30px;
+	line-height: 30px;
+}
+
+/* users */
+.warn {
+	padding: 15px;
+	background-color: #FFA07A;
+	border: 2px solid #CCC;
+	border-radius: 3px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
