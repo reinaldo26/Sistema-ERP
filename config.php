@@ -13,11 +13,11 @@ if(ENVIRONMENT == 'development') {
 	$config['dbuser'] = 'root';
 	$config['dbpass'] = '';
 } else {
-  	define("BASE_URL", "http://reinaldo-net.stackstaging.com/Estrutura_MVC/");
-	$config['dbname'] = 'reinaldo-teste1-33376b6e';
-	$config['host'] = 'shareddb-i.hosting.stackcp.net';
-	$config['dbuser'] = 'reinaldo-teste1-33376b6e';
-	$config['dbpass'] = 'brooke26';
+  	define("BASE_URL", "");
+	$config['dbname'] = '';
+	$config['host'] = '';
+	$config['dbuser'] = '';
+	$config['dbpass'] = '';
 }
 
 try {
