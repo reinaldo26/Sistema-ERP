@@ -4,6 +4,9 @@
 	<meta charset="utf-8">
 	<title>Painel - <?php echo $viewData['company_name']; ?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/assets/css/template.css"/>
+	<script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/jquery.js"></script>
+	<script type="text/javascript">var BASE_URL = '<?php echo BASE_URL; ?>'</script>
+	<script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/script.js"></script>
 </head>
 <body>	
 
@@ -14,6 +17,7 @@
 			<li><a href="<?php echo BASE_URL; ?>">Home</a></li>
 			<li><a href="<?php echo BASE_URL; ?>/permissions">Permissões</a></li>
 			<li><a href="<?php echo BASE_URL; ?>/users">Usuários</a></li> 
+			<li><a href="<?php echo BASE_URL; ?>/clients">Clientes</a></li> 
 		</ul>
 	</div>
 	</div>
@@ -27,8 +31,5 @@
 			<?php $this->loadViewInTemplate($viewName, $viewData); ?>
 		</div>
 	</div>
-
-<script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/script.js"></script>
 </body>
 </html>

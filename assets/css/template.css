@@ -8,7 +8,7 @@ body {
 .left-menu {
 	width: 200px;
 	background-color: #1F232A;
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	bottom: 0;
@@ -119,10 +119,12 @@ body {
 }
 
 /* === DEFAULT === */
+
 input[type=text],
 input[type=password],
 input[type=email],
-select {
+select,
+textarea {
 	width: 98%;
 	height: 30px;
 	font-size: 13px;
@@ -130,6 +132,11 @@ select {
 	padding-right: 5px;
 	padding-left: 5px;
 	margin-top: 5px;
+}
+
+textarea {
+	height: 50px;
+	border: 1px solid #CCC;
 }
 
 input[type=submit], button, .button {
@@ -192,4 +199,69 @@ table td {
 	border-radius: 3px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+/*clients */
+.pagination {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.page_item {
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	float: left;
+	border: 1px solid #000;
+	margin-right: 3px;
+	text-align: center;
+}
+
+.page_item a {
+	color: #000;
+	text-decoration: none;
+}
+
+.page_active {
+	background-color: #224074;
+}
+
+.page_active a {
+	color: #FFF;
+}
+#search {
+	width: 100px;
+	float: right;
+	background-image: url('../img/search.png');
+	background-repeat: no-repeat;
+	background-size: 15px 15px;
+	background-position: 5px;
+	padding-left: 25px;
+	border-radius: 3px;
+	border: 1px solid #CCC;
+}
+
+.searchResults {
+	width: 270px;
+	min-height: 54px;
+	background-color: #FFF;
+	position: absolute;
+	border: 1px solid #CCC;
+}
+
+.si {
+	height: 20px;
+	line-height: 20px;
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+.si:hover {
+	background-color: #EEE;
+}
+
+.si a {
+	color: #000;
+	text-decoration: none;
+	display: block;
 }
