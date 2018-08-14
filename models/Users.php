@@ -142,6 +142,15 @@ class Users extends model
 		}
 	}
 
+	public function getId()
+	{
+		if(isset($this->userInfo['id'])){
+			return $this->userInfo['id'];
+		} else {
+			return '';
+		}
+	}
+
 	public function findUsersInGroup($id)
 	{
 		$stmt = $this->conn->prepare("SELECT COUNT(*) as c FROM users WHERE id_group = :GROUP");
