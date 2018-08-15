@@ -25,7 +25,9 @@ class ajaxController extends controller
 			foreach($clients as $client){
 				$data[] = [
 					"name" => $client['name'], 
-					"link" => BASE_URL."/clients/edit/".$client['id']];
+					"link" => BASE_URL."/clients/edit/".$client['id'],
+					"id" => $client['id']
+				];		
 			}
 		}
 
