@@ -13,7 +13,7 @@ class Clients extends model
 		return $array;
 	}
 
-	public function add($id_company, $name, $phone, $email, $stars, $internal_obs, $address_zipCode, $address, $address_number,$address2, $address_neighborhood, $address_city, $address_state, $address_country)
+	public function add($id_company, $name, $phone='-', $email='-', $stars = '3', $internal_obs='-', $address_zipCode='-', $address='-', $address_number='-', $address2='-', $address_neighborhood='-', $address_city='-', $address_state='-', $address_country='-')
 	{
 		$stmt = $this->conn->prepare("INSERT INTO clients(name, email, phone, address, address_neighborhood, address_city, address_state, address_country, address_zipCode, address_number, address2, stars, internal_obs, id_company) VALUES(:NAME, :EMAIL, :PHONE, :ADDRESS, :ADDRESS_NEIGHBORHOOD, :ADDRESS_CITY, :ADDRESS_STATE, :ADDRESS_COUNTRY, :ADDRESS_ZIPCODE, :ADDRESS_NUMBER, :ADDRESS2, :STARS, :INTENAL_OBS, :ID_COMPANY)");
 		$stmt->bindParam(":NAME", $name);
@@ -31,6 +31,7 @@ class Clients extends model
 		$stmt->bindParam(":INTENAL_OBS", $internal_obs);
 		$stmt->bindParam(":ID_COMPANY", $id_company);
 		$stmt->execute();
+		return $this->conn->lastInsertId();
 	}
 
 	public function edit($id, $id_company, $name, $phone, $email, $stars, $internal_obs, $address_zipCode, $address, $address_number,$address2, $address_neighborhood, $address_city, $address_state, $address_country)

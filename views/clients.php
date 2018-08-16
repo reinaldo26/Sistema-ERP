@@ -45,7 +45,7 @@
 
 <div class="pagination">
 	<?php for($i=1; $i<=$page_count; $i++): ?>
-		<div class="page_item <?php echo($i==$p)?'page_active':''; ?>"><a href="<?php echo BASE_URL; ?>/clients?p=<?php echo $i; ?>"><?php echo $i; ?></a></div>
+		<div class="page_item <?php echo($i==$p)?'page_active':''; ?>"><a href="<?php echo BASE_URL; ?>/clients?page=<?php echo $i; ?>"><?php echo $i; ?></a></div>
 	<?php endfor; ?>
 </div>
 

@@ -41,6 +41,17 @@ class salesController extends controller
 
 		if($u->hasPermission('sales.edit')){
 			$s = new Sales();
+			if(isset($_POST['client_id']) && !empty($_POST['client_id'])){
+				$client_id = addslashes($_POST['client_id']);
+				$price = addslashes($_POST['price']);
+				$status = addslashes($_POST['status']);
+
+				$price = str_replace('.', '', $price);
+				$price = str_replace(",", ".", $price);
+				
+				$s->addSale($u->getCompany(), $client_id, $u->getId(), $price, $status);
+				header("Location: ".BASE_URL."/sales");
+			}
 			$this->loadTemplate('sales_add', $data);
 		} else {
 			header("Location: ".BASE_URL);

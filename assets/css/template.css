@@ -266,3 +266,19 @@ table td {
 	text-decoration: none;
 	display: block;
 }
+
+/* SALES */
+#search_name {
+	width: 250px;
+	float: left;
+}
+
+.client_add_button {
+	font-size: 17px;
+	height: 36px;
+	line-height: 35px;
+	display: block;
+	float: left;
+	margin-top: 5px;
+	margin-left: 8px;
+}

@@ -1,4 +1,5 @@
 $(function(){
+	$('input[name=price]').mask('000.000.000.000.000,00', {reverse:true, placeholder:'0,00'});
 	$('#search_name').on('keyup', function(){
 		var type = $(this).attr('data-type');
 		var q = $(this).val();
@@ -28,6 +29,26 @@ $(function(){
 			}
 		});
 	});
+
+	$('.client_add_button').on('click', function(e){
+		e.preventDefault();
+		var name = $('#search_name').val();
+		if(name != '' && name.length >= 4){
+			if(confirm('Deseja adicionar '+name+'?')){
+				$.ajax({
+					url:BASE_URL+'/ajax/addClient',
+					type:'POST',
+					data:{name:name},
+					dataType:'json',
+					success:function(json){
+						$('.searchResults').hide();
+						$('input[name=client_id]').val(json.id);
+					}
+				});
+				return false;
+			}
+		}
+	});
 });
 
 function selectClient(obj){
@@ -35,5 +56,5 @@ function selectClient(obj){
 	var name = $(obj).html();
 	$('.searchResults').hide();
 	$('#search_name').val(name);
-	$('#search_name').attr('data-id', id);
+	$('input[name=client_id]').val(id);
 }

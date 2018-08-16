@@ -23,15 +23,18 @@ class clientsController extends controller
 		if($u->hasPermission('clients_view')){
 			$c = new Clients();
 			$offset = 0;
-			$data['p'] = 1;
-			if(isset($_GET['p']) && !empty($_GET['p'])){
-				$data['p'] = intval($_GET['p']);
-				if($data['p'] == 0){
-					$data['p'] = 1;
+			$page = 1; 
+
+			$url = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:'';
+			if($url != ''){
+				$url = explode("=", $url);
+				$page = intval(array_pop($url));
+				if($page == 0){
+					$page = 1;
 				}
 			}
-
-			$offset = (10 * ($data['p']-1));
+			
+			$offset = (10 * ($page-1));
 			$data['clients_list'] = $c->getList($offset, $u->getCompany());
 			$data['clients_count'] = $c->getCount($u->getCompany());
 			$data['page_count'] = ceil(($data['clients_count'] / 10));
@@ -40,7 +43,7 @@ class clientsController extends controller
 		} else {
 			header("Location: ".BASE_URL);
 			exit;
-		}
+		} 
 	}
 
 	public function add()

@@ -12,4 +12,15 @@ class Sales extends model
 		}
 		return $array;
 	}
+
+	public function addSale($id_company, $id_client, $id_user, $price, $status)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO sales(id_client, id_user, date_sale, total_price, id_company, status) VALUES(:ID_CLIENT, :ID_USER, NOW(), :PRICE, :ID_COMPANY, :STATUS)");
+		$stmt->bindParam(":ID_CLIENT", $id_client);
+		$stmt->bindParam(":ID_USER", $id_user);
+		$stmt->bindParam(":PRICE", $price);
+		$stmt->bindParam(":STATUS", $status);
+		$stmt->bindParam(":ID_COMPANY", $id_company);
+		$stmt->execute();
+	}
 }
