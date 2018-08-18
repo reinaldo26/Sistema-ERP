@@ -49,4 +49,20 @@ class ajaxController extends controller
 
 		echo json_encode($data);
 	}
+
+	public function searchProducts()
+	{
+		$data = [];
+		$u = new Users();
+		$u->setLoggedUser();
+		$i = new Inventory();
+
+		if(isset($_POST['q']) && !empty($_POST['q'])){
+			$q = addslashes($_POST['q']);
+			$products = $i->searchProductsByName($q, $u->getCompany());
+			$data = $products;
+		}
+
+		echo json_encode($data);
+	}
 }

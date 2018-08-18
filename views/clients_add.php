@@ -1,10 +1,10 @@
 <h1>Clientes - Adicionar</h1>
 
 <form method="POST">
-	<label for="name">Nome *</label><br/>
+	<label for="name">Nome</label><br/>
 	<input type="text" name="name" required/><br/><br/>
 
-	<label for="phone">Telefone *</label><br/>
+	<label for="phone">Telefone</label><br/>
 	<input type="text" name="phone" required/><br/><br/>
 
 	<label for="email">E-mail</label><br/>
@@ -22,10 +22,10 @@
 	<label for="internal_obs">Observações Internais:</label><br/>
 	<textarea id="internal_obs" name="internal_obs"></textarea><br/><br/>
 
-	<label for="address_zipCode">Cep *</label>
+	<label for="address_zipCode">Cep</label>
 	<input type="text" id="address_zipCode" name="address_zipCode" required/><br/><br/>
 
-	<label for="address">Rua *</label>
+	<label for="address">Rua</label>
 	<input type="text" id="address" name="address" required/><br/><br/>
 
 	<label for="address_number">Número</label>
@@ -34,16 +34,16 @@
 	<label for="address2">Complemento</label>
 	<input type="text" id="address2" name="address2"/><br/><br/>
 
-	<label for="address_neighborhood">Bairro *</label>
+	<label for="address_neighborhood">Bairro</label>
 	<input type="text" id="address_neighborhood" name="address_neighborhood" required/><br/><br/>
 
-	<label for="address_city">Cidade *</label>
+	<label for="address_city">Cidade</label>
 	<input type="text" id="address_city" name="address_city" required/><br/><br/>
 
-	<label for="address_state">Estado *</label>
+	<label for="address_state">Estado</label>
 	<input type="text" id="address_state" name="address_state" required/><br/><br/>
 
-	<label for="address_country">Pais *</label>
+	<label for="address_country">Pais</label>
 	<input type="text" id="address_country" name="address_country" required/><br/><br/>
 
 	<input type="submit" value="Adicionar"/>

@@ -5,6 +5,7 @@ body {
 	font-family: Arial;
 }
 
+/* ==== Template ===== */
 .left-menu {
 	width: 200px;
 	background-color: #1F232A;
@@ -119,7 +120,6 @@ body {
 }
 
 /* === DEFAULT === */
-
 input[type=text],
 input[type=password],
 input[type=email],
@@ -185,14 +185,14 @@ table td {
 	padding-left: 10px;
 	padding-right: 10px;
 }
-/* END DEFAULT */
 
+/* ===== Home ===== */
 .permissions-item {
 	height: 30px;
 	line-height: 30px;
 }
 
-/* users */
+/* ====== Users ========*/
 .warn {
 	padding: 15px;
 	background-color: #FFA07A;
@@ -202,7 +202,7 @@ table td {
 	margin-bottom: 10px;
 }
 
-/*clients */
+/* ====== Clients ======= */
 .pagination {
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -243,9 +243,10 @@ table td {
 }
 
 .searchResults {
-	width: 270px;
+	/*width: 270px;*/
+	width: auto;
 	min-height: 54px;
-	background-color: #FFF;
+	background-color: rgba(255, 255, 255, 0.9);
 	position: absolute;
 	border: 1px solid #CCC;
 }
@@ -267,7 +268,7 @@ table td {
 	display: block;
 }
 
-/* SALES */
+/* ====== SALES ======== */
 #search_name {
 	width: 250px;
 	float: left;
@@ -282,3 +283,12 @@ table td {
 	margin-top: 5px;
 	margin-left: 8px;
 }
+
+.prod_q {
+	width: 40px !important;
+}
+
+.td-quant {
+	text-align: center;
+}
+/* =========== =========== */

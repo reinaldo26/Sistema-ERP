@@ -17,8 +17,12 @@
 			<td><?php echo $sale['name']; ?></td>
 			<td>R$<?php echo number_format($sale['total_price'], 2, ",", ".") ; ?></td>
 			<td><?php echo date('d/m/Y', strtotime($sale['date_sale'])); ?></td>
-			<td><?php echo $sale['status']; ?></td>
-			<td>*</td>
+			<td><?php echo $statuses[$sale['status']]; ?></td>
+			<td>	
+				<a href="<?php echo BASE_URL; ?>/sales/edit/<?php echo $sale['id'];?>">
+					<div class="button button-small">Visualizar</div>
+				</a>
+			</td>
 		</tr>
 	<?php endforeach; ?>
 </table>

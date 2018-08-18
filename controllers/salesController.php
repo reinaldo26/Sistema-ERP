@@ -18,6 +18,7 @@ class salesController extends controller
 		$c = new Companies($u->getCompany());
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
+		$data['statuses'] = ['0' => 'Aguarndando pagamento', '1' => 'Pago', '2' => 'Cancelado'];
 
 		if($u->hasPermission('sales.view')){
 			$s = new Sales();
@@ -39,20 +40,46 @@ class salesController extends controller
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 
-		if($u->hasPermission('sales.edit')){
+		if($u->hasPermission('sales.view')){
 			$s = new Sales();
 			if(isset($_POST['client_id']) && !empty($_POST['client_id'])){
 				$client_id = addslashes($_POST['client_id']);
-				$price = addslashes($_POST['price']);
 				$status = addslashes($_POST['status']);
+				$quant = $_POST['quant'];
 
-				$price = str_replace('.', '', $price);
-				$price = str_replace(",", ".", $price);
 				
-				$s->addSale($u->getCompany(), $client_id, $u->getId(), $price, $status);
+				$s->addSale($u->getCompany(), $client_id, $u->getId(), $quant, $status);
 				header("Location: ".BASE_URL."/sales");
 			}
 			$this->loadTemplate('sales_add', $data);
+		} else {
+			header("Location: ".BASE_URL);
+			exit;
+		}
+	}
+
+	public function edit($id)
+	{
+		$data = [];
+		$u = new Users();
+		$u->setLoggedUser();
+		$c = new Companies($u->getCompany());
+		$data['company_name'] = $c->getName();
+		$data['user_email'] = $u->getEmail();
+
+		if($u->hasPermission('sales.view')){
+			$s = new Sales();
+			if(isset($_POST['client_id']) && !empty($_POST['client_id'])){
+				$client_id = addslashes($_POST['client_id']);
+				$status = addslashes($_POST['status']);
+				$quant = $_POST['quant'];
+
+				
+				$s->addSale($u->getCompany(), $client_id, $u->getId(), $quant, $status);
+				header("Location: ".BASE_URL."/sales");
+			}
+			$data['sales_info'] = $s->getInfo($id, $u->getCompany());
+			$this->loadTemplate('sales_edit', $data);
 		} else {
 			header("Location: ".BASE_URL);
 			exit;

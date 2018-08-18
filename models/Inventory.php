@@ -80,4 +80,29 @@ class Inventory extends model
 		// inventory history
 		$this->setLog($id, $id_company, $id_user, 'delete');
 	}
+
+	public function searchProductsByName($name, $id_company)
+	{
+		$array = [];
+		$stmt = $this->conn->prepare("SELECT id, name, price FROM inventory WHERE name LIKE :NAME AND id_company = :ID_COMPANY LIMIT 10");
+		$stmt->bindValue(":NAME", '%'.$name.'%');
+		$stmt->bindParam(":ID_COMPANY", $id_company);
+		$stmt->execute();
+		if($stmt->rowCount() > 0){
+			$array = $stmt->fetch();
+		}
+		return $array;
+	}
+
+	public function decrease($id_prod, $quant_prod, $id_company, $id_user)
+	{
+		$stmt = $this->conn->prepare("UPDATE inventory SET quantity = quantity - $quant_prod WHERE id = :ID AND id_company = :ID_COMPANY");
+		//$stmt->bindParam(":QUANT", $quant_prod);
+		$stmt->bindParam(":ID_COMPANY", $id_company);
+		$stmt->bindParam(":ID", $id_prod);
+		$stmt->execute();
+
+		// inventory history
+		$this->setLog($id_prod, $id_company, $id_user, 'decrease');
+	}
 }
