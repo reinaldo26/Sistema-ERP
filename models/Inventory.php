@@ -105,4 +105,16 @@ class Inventory extends model
 		// inventory history
 		$this->setLog($id_prod, $id_company, $id_user, 'decrease');
 	}
+
+	public function getInventoryFiltered($id_company)
+	{
+		$array = [];
+		$stmt = $this->conn->prepare("SELECT *, (min_quantity-quantity) as dif FROM inventory WHERE quantity < min_quantity AND id_company = :ID_COMPANY ORDER BY name ASC");
+		$stmt->bindParam(":ID_COMPANY", $id_company);
+		$stmt->execute();
+		if($stmt->rowCount() > 0){
+			$array = $stmt->fetchAll();
+		}
+		return $array;
+	}
 }

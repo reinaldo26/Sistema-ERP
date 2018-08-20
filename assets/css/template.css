@@ -291,4 +291,44 @@ table td {
 .td-quant {
 	text-align: center;
 }
-/* =========== =========== */
+
+/* =========== Reports =========== */
+.report-item {
+	width: 150px;
+	height: 140px;
+	background-color: #FFF;
+	float: left;
+	margin: 20px;
+	padding: 20px;
+	padding-bottom: 15px;
+	text-align: center;
+	font-size: 15px;
+	border: 2px solid #CCC;
+}
+
+.report-item a {
+	display: block;
+	text-decoration: none;
+	color: #000;
+}
+
+.report-grid {
+	width: 25%;
+	height: 150px;
+	float: left;
+	text-align: center;
+}
+
+/* ==== Home === */
+.dashboard-row {
+	
+}
+
+.grid-3 {
+	width: 33%;
+	height: 100px;
+	float: left;
+	background-color: #CCC;
+	margin-left: 20px;
+	box-sizing: border-box;
+}

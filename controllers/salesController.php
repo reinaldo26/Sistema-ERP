@@ -47,7 +47,6 @@ class salesController extends controller
 				$status = addslashes($_POST['status']);
 				$quant = $_POST['quant'];
 
-				
 				$s->addSale($u->getCompany(), $client_id, $u->getId(), $quant, $status);
 				header("Location: ".BASE_URL."/sales");
 			}
@@ -66,16 +65,14 @@ class salesController extends controller
 		$c = new Companies($u->getCompany());
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
+		$data['statuses'] = ['0' => 'Aguarndando pagamento', '1' => 'Pago', '2' => 'Cancelado'];
 
 		if($u->hasPermission('sales.view')){
 			$s = new Sales();
-			if(isset($_POST['client_id']) && !empty($_POST['client_id'])){
-				$client_id = addslashes($_POST['client_id']);
+			$data['permission_edit'] = $u->hasPermission('sales.edit');
+			if(isset($_POST['status']) && $data['permission_edit']){
 				$status = addslashes($_POST['status']);
-				$quant = $_POST['quant'];
-
-				
-				$s->addSale($u->getCompany(), $client_id, $u->getId(), $quant, $status);
+				$s->changeStatus($status, $id, $u->getCompany());
 				header("Location: ".BASE_URL."/sales");
 			}
 			$data['sales_info'] = $s->getInfo($id, $u->getCompany());

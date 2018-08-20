@@ -66,12 +66,78 @@ class Sales extends model
 				$array['info'] = $stmt->fetch();
 			}
 			$stmt = $this->conn->prepare("SELECT sales_products.quantity, sales_products.sale_price, inventory.name FROM sales_products LEFT JOIN inventory ON inventory.id = sales_products.id_product WHERE sales_products.id_sale = :ID_SALE AND sales_products.id_company = :ID_COMPANY");
-			$stmt->bindParam(":ID_SALE", $id_sale);
+			$stmt->bindParam(":ID_SALE", $id);
 			$stmt->bindParam(":ID_COMPANY", $id_company);
 			$stmt->execute();
 			if($stmt->rowCount() > 0){
 				$array['products'] = $stmt->fetchAll();
 			}
 			return $array;
+	}
+
+	public function changeStatus($status, $id, $id_company)
+	{
+		$stmt = $this->conn->prepare("UPDATE sales SET status = :STATUS WHERE id = :ID AND id_company = :ID_COMPANY");
+		$stmt->bindParam(":STATUS", $status);
+		$stmt->bindParam(":ID", $id);
+		$stmt->bindParam(":ID_COMPANY", $id_company);
+		$stmt->execute();
+	}
+
+	public function getSalesFiltered($client_name, $period1, $period2, $status, $order, $id_company)
+	{
+		$array = [];
+		$query = "SELECT clients.name, sales.date_sale, sales.status, sales.total_price FROM sales LEFT JOIN clients ON clients.id = sales.id_client WHERE ";
+
+		$where[] = "sales.id_company = :ID_COMPANY";
+
+		if(!empty($client_name)){
+			$where[] = "clients.name LIKE '%".$client_name."%'";
+		} 
+
+		if(!empty($period1) && !empty($period2)){
+			$where[] = "sales.date_sale BETWEEN :PERIOD1 AND :PERIOD2";
+		}
+		
+		if($status != ''){
+			$where[] = "sales.status = :STATUS";
+		} 
+
+		$query .= implode(" AND ", $where);
+
+		switch($order){
+			case 'date_desc':
+			default:
+				$query .= " ORDER BY sales.date_sale DESC";
+				break;
+
+			case 'date_asc':
+				$query .= " ORDER BY sales.date_sale ASC";
+				break;
+
+			case 'status':
+				$query .= " ORDER BY sales.status ASC";
+				break;
+		}
+		
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(":ID_COMPANY", $id_company);
+
+		if(!empty($period1) && !empty($period2)){
+			$stmt->bindParam(":PERIOD1", $period1);
+			$stmt->bindParam(":PERIOD2", $period2);
+		}
+		
+		if($status != ''){
+			$stmt->bindParam(":STATUS", $status);
+		}
+
+		$stmt->execute();
+		if($stmt->rowCount() > 0){
+			$array = $stmt->fetchAll();
+		}
+
+		return $array;
 	}
 }
