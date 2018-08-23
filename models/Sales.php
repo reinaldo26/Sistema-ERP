@@ -140,4 +140,126 @@ class Sales extends model
 
 		return $array;
 	}
+
+	public function getTotalRevenue($period1, $period2, $id_company)
+	{
+		$float = 0;
+		$stmt = $this->conn->prepare("SELECT SUM(total_price) as total FROM sales WHERE date_sale BETWEEN :PERIOD1 AND NOW() AND id_company = :ID_COMPANY");
+			$stmt->bindParam(":PERIOD1", $period1);
+			//$stmt->bindParam(":PERIOD2", $period2);
+			$stmt->bindParam(":ID_COMPANY", $id_company);
+			$stmt->execute();
+
+			$n = $stmt->fetch();
+			$float = $n['total'];
+			
+			return $float;
+	}
+
+	public function getTotalExpenses($period1, $period2, $id_company)
+	{
+		$float = 0;
+		$stmt = $this->conn->prepare("SELECT SUM(total_price) as purchases FROM sales WHERE date_purchase BETWEEN :PERIOD1 AND NOW() AND id_company = :ID_COMPANY");
+			$stmt->bindParam(":PERIOD1", $period1);
+			//$stmt->bindParam(":PERIOD2", $period2);
+			$stmt->bindParam(":ID_COMPANY", $id_company);
+			$stmt->execute();
+
+			$n = $stmt->fetch();
+			$float = $n['total'];
+			
+			return $float;
+	}
+
+	public function getSoldProducts($period1, $period2, $id_company)
+	{
+		$int = 0;
+		$stmt = $this->conn->prepare("SELECT id FROM sales WHERE id_company = $id_company AND date_sale BETWEEN $period1 AND NOW()");
+			$stmt->bindParam(":PERIOD1", $period1);
+			//$stmt->bindParam(":PERIOD2", $period2);
+			$stmt->bindParam(":ID_COMPANY", $id_company);
+			$stmt->execute();
+
+			if($stmt->rowCount() > 0) {
+				$p = [];
+				foreach($stmt->fetchAll() as $sale_item){
+					$p[] = $sale_item['id'];
+				} 
+				$stmt = $this->conn->query("SELECT COUNT(*) as total FROM sales_products WHERE id_sale IN (".implode(",", $p).")");
+				$n = $stmt->fetch();
+				$int = $n['total'];
+			}
+			return $int;
+	}
+
+	public function getRevenueList($period1, $period2, $id_company)
+	{
+		$array = [];
+		$currentDay = $period1;
+		while($period2 != $currentDay){
+			$array[$currentDay] = 0;
+			$currentDay = date('Y-m-d', strtotime('+1 day', strtotime($currentDay)));
+		}
+		
+		$stmt = $this->conn->prepare("SELECT date_sale, SUM(total_price) as total FROM sales WHERE date_sale BETWEEN :PERIOD1 AND NOW() AND id_company = :ID_COMPANY GROUP BY date_sale");
+			$stmt->bindParam(":PERIOD1", $period1);
+			//$stmt->bindParam(":PERIOD2", $period2);
+			$stmt->bindParam(":ID_COMPANY", $id_company);
+			$stmt->execute();
+			if($stmt->rowCount() > 0){
+				$row = $stmt->fetchAll();
+				foreach($row as $sale_item){
+					$s = $sale_item['date_sale'];
+					$date_key = date("Y-m-d", strtotime($s));
+					$array[$date_key] = $sale_item['total'];
+				}
+			}
+				
+			return $array;
+	}
+
+	public function getExpensesList($period1, $period2, $id_company)
+	{
+		$array = [];
+		$currentDay = $period1;
+		while($period2 != $currentDay){
+			$array[$currentDay] = 0;
+			$currentDay = date('Y-m-d', strtotime('+1 day', strtotime($currentDay)));
+		}
+		
+		$stmt = $this->conn->prepare("SELECT date_purchase, SUM(total_price) as total FROM purchases WHERE date_purchase BETWEEN :PERIOD1 AND NOW() AND id_company = :ID_COMPANY GROUP BY date_purchase");
+			$stmt->bindParam(":PERIOD1", $period1);
+			//$stmt->bindParam(":PERIOD2", $period2);
+			$stmt->bindParam(":ID_COMPANY", $id_company);
+			$stmt->execute();
+			if($stmt->rowCount() > 0){
+				$row = $stmt->fetchAll();
+				foreach($row as $sale_item){
+					$s = $sale_item['date_purchase'];
+					$date_key = date("Y-m-d", strtotime($s));
+					$array[$date_key] = $sale_item['total'];
+				}
+			}
+				
+			return $array;
+	}
+
+	public function getStatusList($period1, $period2, $id_company)
+	{
+		$array = ['0' => 0, '1' => 0, '2' => 0];
+		$stmt = $this->conn->prepare("SELECT COUNT(id) as total, status FROM sales WHERE date_sale BETWEEN :PERIOD1 AND NOW() AND id_company = :ID_COMPANY GROUP BY status ORDER BY status ASC");
+			$stmt->bindParam(":PERIOD1", $period1);
+			//$stmt->bindParam(":PERIOD2", $period2);
+			$stmt->bindParam(":ID_COMPANY", $id_company);
+			$stmt->execute();
+			if($stmt->rowCount() > 0){
+				$row = $stmt->fetchAll();
+				foreach($row as $sale_item){
+					$a = $sale_item['status'];
+					$array[$a] = $sale_item['total'];
+				}
+			}
+				
+			return $array;
+	}
 }

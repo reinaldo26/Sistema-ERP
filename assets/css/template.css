@@ -321,14 +321,74 @@ table td {
 
 /* ==== Home === */
 .dashboard-row {
-	
+	clear: both;
 }
 
-.grid-3 {
+.dashboard-grid-1 {
 	width: 33%;
 	height: 100px;
 	float: left;
+}
+
+.row1 .dashboard-grid-1:nth-child(1) .dashboard-grid-area {
+	margin-left: 0;
+}
+
+.row1 .dashboard-grid-1:nth-child(3) .dashboard-grid-area {
+	margin-right: 0;
+}
+
+.dashboard-grid-2 {
+	width: 66%;
+	float: left;
+}
+
+.row2 .dashboard-grid-2  .dashboard-info {
+	margin-left: 0;
+}
+
+.row2 .dashboard-grid-1 .dashboard-info {
+	margin-right: 0;
+}
+
+.dashboard-grid-3 {
+	width: 100%;
+	float: left;
+}
+
+.dashboard-grid-area {
 	background-color: #CCC;
-	margin-left: 20px;
-	box-sizing: border-box;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 100px;
+	padding-left: 20px;
+}
+
+.dashboard-grid-area-count {
+	font-size: 28px;
+	padding-top: 18px;
+}
+
+.dashboard-grid-area-legend {
+	font-size: 18px;
+}
+
+.dashboard-info {
+	margin: 20px 10px 0 10px;
+	margin-top: 20px;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	background-color: #FFF;
+}
+
+.dashboard-info-title {
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+	padding-left: 10px;
+	border-bottom: 1px solid #CCC;
+}
+
+.dashboard-info-body {
+	padding: 10px;
 }
