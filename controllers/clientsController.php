@@ -38,7 +38,7 @@ class clientsController extends controller
 			$data['clients_list'] = $c->getList($offset, $u->getCompany());
 			$data['clients_count'] = $c->getCount($u->getCompany());
 			$data['page_count'] = ceil(($data['clients_count'] / 10));
-			$data['edit_permission'] = $u->hasPermission('clients_edit');
+			$data['edit_permission'] = $u->hasPermission('clients.edit');
 			$this->loadTemplate('clients', $data);
 		} else {
 			header("Location: ".BASE_URL);

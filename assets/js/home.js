@@ -6,15 +6,15 @@ var rel1 = new Chart(document.getElementById("rel1"), {
 			label:'Receita',
 			data:revenue_list,
 			fill:false,
-			backgroundColor:'#0000FF',
-			borderColor:'#0000FF'
+			backgroundColor:'#36A2EB',
+			borderColor:'#36A2EB'
 		},
 		{
 			label:'Despesas',
 			data:expenses_list,
 			fill:false,
-			backgroundColor:'#FF0000',
-			borderColor:'#FF0000'
+			backgroundColor:'#FF6384',
+			borderColor:'#FF6384'
 		}]
 	}
 });

@@ -1,9 +1,9 @@
 <h1>Clientes</h1>
 
 <?php if($edit_permission): ?>
-<div class="button">
-	<a href="<?php echo BASE_URL; ?>/clients/add" class="button">Adicionar Cliente</a>
-</div>
+<a href="<?php echo BASE_URL; ?>/clients/add" class="button">
+	<div class="button">Adicionar Cliente</div>
+</a>
 <?php endif; ?>
 
 <input type="text" id="search" data-type="searchClients"/>
@@ -25,19 +25,19 @@
 			<td><?php echo $client['address_city']; ?></td>
 			<td style="text-align: center;"><?php echo $client['stars']; ?></td>
 			<td style="text-align: center;">
-			<?php if($edit_permission): ?>
-				<div class="button button-small">
-					<a href="<?php echo BASE_URL; ?>/clients/edit/<?php echo $client['id'];?>">Editar</a>
-				</div>	
-
-				<div class="button button-small">
-					<a href="<?php echo BASE_URL; ?>/clients/delete/<?php echo $client['id'];?>" onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
-				</div>
-			<?php else: ?>
-				<div class="button button-small">
-					<a href="<?php echo BASE_URL; ?>/clients/view/<?php echo $client['id'];?>">Visualizar</a>
-				</div>
-			<?php endif; ?>
+				<?php if($edit_permission): ?>
+				<a href="<?php echo BASE_URL; ?>/clients/edit/<?php echo $client['id'];?>">
+					<div class="button button-small">Editar</div>
+				</a>
+	
+				<a href="<?php echo BASE_URL; ?>/clients/delete/<?php echo $client['id'];?>" onclick="return confirm('Deseja realmente excluir?')">
+					<div class="button button-small">Excluir</div>
+				</a>
+				<?php else: ?>
+				<a href="<?php echo BASE_URL; ?>/clients/view/<?php echo $client['id'];?>">
+					<div class="button button-small">Vizualizar</div>
+				</a>
+				<?php endif; ?>
 			</td>
 		</tr>	
 	<?php endforeach; ?>

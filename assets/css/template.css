@@ -15,10 +15,6 @@ body {
 	bottom: 0;
 }
 
-.container {
-
-}
-
 .container .top {
 	height: 40px;
 	padding-left: 200px;
@@ -85,19 +81,19 @@ body {
 }
 
 .menu-area li:nth-child(5) {
-	background-image: url('../img/resellers.png'); 
-}
-
-.menu-area li:nth-child(6) {
 	background-image: url('../img/inventory.png'); 
 }
 
-.menu-area li:nth-child(7) {
+.menu-area li:nth-child(6) {
 	background-image: url('../img/sales2.png'); 
 }
 
-.menu-area li:nth-child(8) {
+.menu-area li:nth-child(7) {
 	background-image: url('../img/purchases2.png'); 
+}
+
+.menu-area li:nth-child(8) {
+	background-image: url('../img/resellers.png'); 
 }
 
 .menu-area li:nth-child(9) {
@@ -210,6 +206,7 @@ table td {
 	line-height: 40px;
 	background-color: #EEE;
 	text-align: left;
+	font-size: 13px;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -258,6 +255,7 @@ table td {
 .page_active a {
 	color: #FFF;
 }
+
 #search {
 	width: 100px;
 	float: right;
@@ -271,7 +269,6 @@ table td {
 }
 
 .searchResults {
-	/*width: 270px;*/
 	width: auto;
 	min-height: 54px;
 	background-color: rgba(255, 255, 255, 0.9);
@@ -320,34 +317,7 @@ table td {
 	text-align: center;
 }
 
-/* =========== Reports =========== */
-.report-item {
-	width: 150px;
-	height: 140px;
-	background-color: #FFF;
-	float: left;
-	margin: 20px;
-	padding: 20px;
-	padding-bottom: 15px;
-	text-align: center;
-	font-size: 15px;
-	border: 2px solid #CCC;
-}
-
-.report-item a {
-	display: block;
-	text-decoration: none;
-	color: #000;
-}
-
-.report-grid {
-	width: 25%;
-	height: 150px;
-	float: left;
-	text-align: center;
-}
-
-/* ==== Home === */
+/* === Home === */
 .dashboard-row {
 	clear: both;
 }
@@ -421,13 +391,39 @@ table td {
 	padding: 10px;
 }
 
-/* === Report === */
+/* === Reports === */
+.report-item {
+	width: 150px;
+	height: 140px;
+	background-color: #FFF;
+	float: left;
+	margin: 20px;
+	padding: 20px;
+	padding-bottom: 15px;
+	text-align: center;
+	font-size: 15px;
+	border: 2px solid #CCC;
+}
+
+.report-item {
+	font-size: 14px;
+}
+
+.report-grid {
+	width: 25%;
+	height: 150px;
+	float: left;
+	text-align: center;
+}
+
 .report-container {
 	display: flex;
 }
 
-.report-item {
+.report-container a {
 	flex: 1;
+	text-decoration: none;
+	color: #000;
 }
 
 .report-grid {

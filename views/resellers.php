@@ -1,9 +1,9 @@
 <h1>Revendedores</h1>
 
 <?php if($edit_permission): ?>
-<div class="button">
-	<a href="<?php echo BASE_URL; ?>/resellers/add" class="button">Adicionar Revendedor</a>
-</div>
+<a href="<?php echo BASE_URL; ?>/resellers/add" class="button">
+	<div class="button">Adicionar Revendedor</div>
+</a>
 <?php endif; ?>
 
 <input type="text" id="search" data-type="searchResellers"/>
@@ -22,17 +22,16 @@
 			<td><?php echo $reseller['phone']; ?></td>
 			<td style="text-align: center;">
 			<?php if($edit_permission): ?>
-				<div class="button button-small">
-					<a href="<?php echo BASE_URL; ?>/resellers/edit/<?php echo $reseller['id'];?>">Editar</a>
-				</div>	
-
-				<div class="button button-small">
-					<a href="<?php echo BASE_URL; ?>/resellers/delete/<?php echo $reseller['id'];?>" onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
-				</div>
+			<a href="<?php echo BASE_URL; ?>/resellers/edit/<?php echo $reseller['id'];?>">
+				<div class="button button-small">Editar</div>
+			</a>
+			<a href="<?php echo BASE_URL; ?>/resellers/delete/<?php echo $reseller['id'];?>" onclick="return confirm('Deseja realmente excluir?')">
+				<div class="button button-small">Excluir</div>
+			</a>
 			<?php else: ?>
-				<div class="button button-small">
-					<a href="<?php echo BASE_URL; ?>/resellers/view/<?php echo $reseller['id'];?>">Visualizar</a>
-				</div>
+			<a href="<?php echo BASE_URL; ?>/resellers/view/<?php echo $reseller['id'];?>">
+				<div class="button button-small">Visualizar</div>
+			</a>	
 			<?php endif; ?>
 			</td>
 		</tr>	

@@ -7,7 +7,7 @@ global $config;
 $config = [];
 
 if(ENVIRONMENT == 'development') {
-	define("BASE_URL", "http://localhost/Projects/PHPZP/_Projetos/SystemERP");
+	define("BASE_URL", "http://localhost/Projects/PHPZP/_Projetos/SystemaERP");
 	$config['dbname'] = 'system_erp';
 	$config['host'] = 'localhost';
 	$config['dbuser'] = 'root';
