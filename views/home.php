@@ -1,4 +1,5 @@
 <div class="dashboard-row row1">
+
 	<div class="dashboard-grid-1">
 		<div class="dashboard-grid-area">
 			<div class="dashboard-grid-area-count"><?php echo $products_sold; ?></div>
@@ -25,7 +26,7 @@
 	<div class="dashboard-grid-2">
 		<div class="dashboard-info">
 			<div class="dashboard-info-title">Despesas e Receitas dos últimos 30 dias</div>
-			<div class="dashboard-info-body" style="height:300px;">
+			<div class="dashboard-info-body" style="height:320px;">
 				<canvas id="rel1"></canvas>
 			</div>
 		</div>
@@ -34,10 +35,11 @@
 		<div class="dashboard-info">
 			<div class="dashboard-info-title">Status de Pagamento</div>
 			<div class="dashboard-info-body">
-				<canvas id="rel2" height="290"></canvas>
+				<canvas id="rel2" height="310"></canvas>
 			</div>
 		</div>
 	</div>
+
 </div>
 
 <script type="text/javascript">var days = <?php echo json_encode($days_list); ?>;</script>
