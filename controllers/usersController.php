@@ -21,7 +21,7 @@ class usersController extends controller
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 
-		if($u->hasPermission('users_view')){
+		if($u->hasPermission('users.view')){
 			$data['users_list'] = $u->getList($u->getCompany());
 			$this->loadTemplate('users', $data);
 		} else {
@@ -40,7 +40,7 @@ class usersController extends controller
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 
-		if($u->hasPermission('users_view')){
+		if($u->hasPermission('users.view')){
 			$p = new Permissions();
 			if(isset($_POST['email']) && !empty($_POST['email'])){
 				$name = addslashes($_POST['name']);
@@ -72,7 +72,7 @@ class usersController extends controller
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 
-		if($u->hasPermission('users_view')){
+		if($u->hasPermission('users.view')){
 			$p = new Permissions();
 			if(isset($_POST['group']) && !empty($_POST['group'])){
 				$name = addslashes($_POST['name']);
@@ -97,7 +97,7 @@ class usersController extends controller
 		$u = new Users();
 		$u->setLoggedUser();
 
-		if($u->hasPermission('users_view')){
+		if($u->hasPermission('users.view')){
 			$u->delete($id, $u->getCompany());
 			header("Location: ".BASE_URL."/users");
 		} else {

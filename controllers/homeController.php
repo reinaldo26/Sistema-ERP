@@ -41,14 +41,11 @@ class homeController extends controller
 
 		$data['status_list'] = $s->getStatusList(date('Y-m-d', strtotime('-30 days')), date('Y-m-d'), $u->getCompany());
 
-		if($u->hasPermission('permission_link')){
+		if($u->hasPermission('permission.link')){
 			$this->loadTemplate('home', $data);
 		} else {
 			header("Location: ".BASE_URL);
 			exit;
-		}
-
-		
+		}	
 	}
-
 }

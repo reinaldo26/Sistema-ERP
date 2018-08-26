@@ -34,6 +34,28 @@ class ajaxController extends controller
 		echo json_encode($data);
 	}
 
+	public function searchResellers()
+	{
+		$data = [];
+		$u = new Users();
+		$u->setLoggedUser();
+		$r = new Resellers();
+
+		if(isset($_POST['q']) && !empty($_POST['q'])){
+			$q = addslashes($_POST['q']);
+			$resellers = $r->searchResellerByName($q, $u->getCompany());
+			foreach($resellers as $r){
+				$data[] = [
+					"name" => $r['name'], 
+					"link" => BASE_URL."/resellers/edit/".$r['id'],
+					"id" => $r['id']
+				];		
+			}
+		}
+
+		echo json_encode($data);
+	}
+
 	public function addClient()
 	{
 		$data = [];
@@ -44,6 +66,22 @@ class ajaxController extends controller
 		if(isset($_POST['name']) && !empty($_POST['name'])){
 			$name = addslashes($_POST['name']);
 			$data['id'] = $c->add($u->getCompany(), $name);
+			echo $data['id']; exit;
+		}
+
+		echo json_encode($data);
+	}
+
+	public function addReseller()
+	{
+		$data = [];
+		$u = new Users();
+		$u->setLoggedUser();
+		$r = new Resellers();
+
+		if(isset($_POST['name']) && !empty($_POST['name'])){
+			$name = addslashes($_POST['name']);
+			$data['id'] = $r->add($u->getCompany(), $name);
 			echo $data['id']; exit;
 		}
 

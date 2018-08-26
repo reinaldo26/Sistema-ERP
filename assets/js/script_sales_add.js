@@ -42,7 +42,7 @@ $(function(){
 					dataType:'json',
 					success:function(json){
 						$('.searchResults').hide();
-						$('input[name=client_id]').val(json.id);
+						$('.client_id').val(json.id);
 					}
 				});
 				return false;
@@ -87,7 +87,7 @@ function selectClient(obj){
 	var name = $(obj).html();
 	$('.searchResults').hide();
 	$('#search_name').val(name);
-	$('input[name=client_id]').val(id);
+	$('.client_id').val(id);
 }
 
 function addProduct(obj){

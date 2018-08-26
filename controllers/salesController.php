@@ -40,7 +40,7 @@ class salesController extends controller
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 
-		if($u->hasPermission('sales.view')){
+		if($u->hasPermission('sales.edit')){
 			$s = new Sales();
 			if(isset($_POST['client_id']) && !empty($_POST['client_id'])){
 				$client_id = addslashes($_POST['client_id']);
@@ -49,7 +49,7 @@ class salesController extends controller
 
 				$s->addSale($u->getCompany(), $client_id, $u->getId(), $quant, $status);
 				header("Location: ".BASE_URL."/sales");
-			}
+			} 
 			$this->loadTemplate('sales_add', $data);
 		} else {
 			header("Location: ".BASE_URL);

@@ -159,7 +159,7 @@ class Sales extends model
 	public function getTotalExpenses($period1, $period2, $id_company)
 	{
 		$float = 0;
-		$stmt = $this->conn->prepare("SELECT SUM(total_price) as purchases FROM sales WHERE date_purchase BETWEEN :PERIOD1 AND NOW() AND id_company = :ID_COMPANY");
+		$stmt = $this->conn->prepare("SELECT SUM(total_price) as total FROM purchases WHERE date_purchase BETWEEN :PERIOD1 AND NOW() AND id_company = :ID_COMPANY");
 			$stmt->bindParam(":PERIOD1", $period1);
 			//$stmt->bindParam(":PERIOD2", $period2);
 			$stmt->bindParam(":ID_COMPANY", $id_company);

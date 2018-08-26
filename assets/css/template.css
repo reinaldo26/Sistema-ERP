@@ -76,6 +76,34 @@ body {
 	background-image: url('../img/key.png');
 }
 
+.menu-area li:nth-child(3) {
+	background-image: url('../img/users.png');
+}
+
+.menu-area li:nth-child(4) {
+	background-image: url('../img/clients.png'); 
+}
+
+.menu-area li:nth-child(5) {
+	background-image: url('../img/resellers.png'); 
+}
+
+.menu-area li:nth-child(6) {
+	background-image: url('../img/inventory.png'); 
+}
+
+.menu-area li:nth-child(7) {
+	background-image: url('../img/sales2.png'); 
+}
+
+.menu-area li:nth-child(8) {
+	background-image: url('../img/purchases2.png'); 
+}
+
+.menu-area li:nth-child(9) {
+	background-image: url('../img/reports.png'); 
+}
+
 .menu-area li:hover {
 	background-color: #000;
 }
@@ -391,4 +419,18 @@ table td {
 
 .dashboard-info-body {
 	padding: 10px;
+}
+
+/* === Report === */
+.report-container {
+	display: flex;
+}
+
+.report-item {
+	flex: 1;
+}
+
+.report-grid {
+	flex: 1;
+	padding: 15px;
 }

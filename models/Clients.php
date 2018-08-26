@@ -92,4 +92,12 @@ class Clients extends model
 		}
 		return $array;
 	}
+
+	public function delete($id, $id_company)
+	{
+		$stmt=$this->conn->prepare("DELETE FROM clients WHERE id = :ID AND id_company = :ID_COMPANY");
+		$stmt->bindParam(":ID", $id);
+		$stmt->bindParam(":ID_COMPANY", $id_company);
+		$stmt->execute();
+	}
 }

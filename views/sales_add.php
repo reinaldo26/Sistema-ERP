@@ -3,7 +3,7 @@
 <form method="POST">
 	<label for="name">Nome do Cliente</label><br/>
 	<input type="text" id="search_name" name="name" data-type="searchClients" autocomplete="off" required/>
-	<input type="hidden" name="client_id"/>
+	<input type="hidden" class="client_id" name="client_id"/>
 	<button class="client_add_button">+</button><div style="clear:both;"></div><br/>
 
 	<label for="price">Valor</label><br/>

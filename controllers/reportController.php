@@ -45,6 +45,23 @@ class reportController extends controller
 		} 
 	}
 
+	public function purchases()
+	{
+		$data = [];
+		$u = new Users();
+		$u->setLoggedUser();
+		$c = new Companies($u->getCompany());
+		$data['company_name'] = $c->getName();
+		$data['user_email'] = $u->getEmail();
+
+		if($u->hasPermission('report.view')){
+			$this->loadTemplate('report_purchases', $data);
+		} else {
+			header("Location: ".BASE_URL);
+			exit;
+		} 
+	}
+
 	public function salesPdf()
 	{
 		$data = [];
@@ -92,6 +109,54 @@ class reportController extends controller
 
 			$data['filters'] = $f;  
 			$this->loadView("report_sales_pdf", $data);
+
+		} else {
+			header("Location: ".BASE_URL);
+			exit;
+		} 
+	}
+
+	public function purchasesPdf()
+	{
+		$data = [];
+		$u = new Users();
+		$u->setLoggedUser();
+
+		if($u->hasPermission('report.view')){
+			$url = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:'';
+			$url = explode("?", $url);
+			$url = array_pop($url);
+			$url = explode("&", $url);
+
+			$a = explode("=", $url[0]);
+			$reseller_name = array_pop($a);
+
+			$a = explode("=", $url[1]);
+			$period1 = array_pop($a); 
+
+			$a = explode("=", $url[2]);
+			$period2 = array_pop($a); 
+
+			$a = explode("=", $url[3]);
+			$order = array_pop($a); 
+
+			$p = new Purchases();
+			$data['purchases_list'] = $p->getPurchasesFiltered($reseller_name, $period1, $period2, $order, $u->getCompany());
+
+			$f = [];
+			if(!empty($reseller_name)){
+				$f['reseller_name'] = $reseller_name;
+			}
+			if(!empty($period1) && !empty($period2)){
+				$f['period1'] = $period1;
+				$f['period2'] = $period2;
+			}
+			if(!empty($order)){
+				$f['order'] = $order;
+			}
+
+			$data['filters'] = $f;  
+			$this->loadView("report_purchases_pdf", $data);
 
 		} else {
 			header("Location: ".BASE_URL);

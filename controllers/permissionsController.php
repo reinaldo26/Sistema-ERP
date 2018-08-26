@@ -21,7 +21,7 @@ class permissionsController extends controller
 		$data['user_email'] = $u->getEmail();
 		$data['permission_link'] = true;
 
-		if($u->hasPermission('permission_link')){
+		if($u->hasPermission('permission.link')){
 			$p = new Permissions();
 			$data['permissions_list'] = $p->getList($u->getCompany());
 			$data['permissions_group_list'] = $p->getGroupList($u->getCompany());
@@ -35,30 +35,26 @@ class permissionsController extends controller
 	{
 		$u = new Users();
 		$u->setLoggedUser();
-		if(!$u->hasPermission('permission_link')){
+		if(!$u->hasPermission('permission.link')){
 			header("Location: ".BASE_URL);
 			exit;
 		}
 
 		$data = [];
-		//$u = new Users();
-		//$u->setLoggedUser();
-		
 		$c = new Companies($u->getCompany());
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 		$data['permission_link'] = true;
 
-		
 		$p = new Permissions();
-			if(isset($_POST['name']) && !empty($_POST['name'])){
-				$permission_name = addslashes($_POST['name']);
-				$p->add($permission_name, $u->getCompany());
-				header("Location: ".BASE_URL."/permissions");
-				exit;
-			}
+		if(isset($_POST['name']) && !empty($_POST['name'])){
+			$permission_name = addslashes($_POST['name']);
+			$p->add($permission_name, $u->getCompany());
+			header("Location: ".BASE_URL."/permissions");
+			exit;
+		}
 			
-			$this->loadTemplate('permissions_add', $data);
+		$this->loadTemplate('permissions_add', $data);
 		
 	}
 
@@ -66,7 +62,7 @@ class permissionsController extends controller
 	{
 		$u = new Users();
 		$u->setLoggedUser();
-		if(!$u->hasPermission('permission_link')){
+		if(!$u->hasPermission('permission.link')){
 			header("Location: ".BASE_URL);
 			exit;
 		}
@@ -95,7 +91,7 @@ class permissionsController extends controller
 	{
 		$u = new Users();
 		$u->setLoggedUser();
-		if(!$u->hasPermission('permission_link')){
+		if(!$u->hasPermission('permission.link')){
 			header("Location: ".BASE_URL);
 			exit;
 		}
@@ -131,7 +127,7 @@ class permissionsController extends controller
 		$data['user_email'] = $u->getEmail();
 		$data['permission_link'] = true;
 
-		if($u->hasPermission('permission_link')){
+		if($u->hasPermission('permission.link')){
 			$p = new Permissions();
 			$p->delete($id);
 			header("Location: ".BASE_URL."/permissions");
@@ -153,7 +149,7 @@ class permissionsController extends controller
 		$data['user_email'] = $u->getEmail();
 		$data['permission_link'] = true;
 
-		if($u->hasPermission('permission_link')){
+		if($u->hasPermission('permission.link')){
 			$p = new Permissions();
 			$p->deleteGroup($id);
 			header("Location: ".BASE_URL."/permissions");
@@ -162,6 +158,5 @@ class permissionsController extends controller
 			header("Location: ".BASE_URL);
 			exit;
 		}
-	
 	}
 }

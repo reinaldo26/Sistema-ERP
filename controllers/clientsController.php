@@ -20,7 +20,7 @@ class clientsController extends controller
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 
-		if($u->hasPermission('clients_view')){
+		if($u->hasPermission('clients.view')){
 			$c = new Clients();
 			$offset = 0;
 			$page = 1; 
@@ -47,8 +47,7 @@ class clientsController extends controller
 	}
 
 	public function add()
-	{
-		
+	{	
 		$data = [];
 		$u = new Users();
 		$u->setLoggedUser();
@@ -57,7 +56,7 @@ class clientsController extends controller
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 
-		if($u->hasPermission('clients_edit')){
+		if($u->hasPermission('clients.edit')){
 			$c = new Clients();
 			if(isset($_POST['name']) && !empty($_POST['name'])){
 				$name = addslashes($_POST['name']);
@@ -94,8 +93,7 @@ class clientsController extends controller
 		$data['company_name'] = $c->getName();
 		$data['user_email'] = $u->getEmail();
 
-		if($u->hasPermission('client_view')){
-			//$p = new Permissions();
+		if($u->hasPermission('clients.view')){
 			$client = new Clients();
 			if(isset($_POST['name']) && !empty($_POST['name'])){
 				$name = addslashes($_POST['name']);
@@ -115,9 +113,6 @@ class clientsController extends controller
 				$client->edit($id, $u->getCompany(), $name, $phone, $email, $stars, $internal_obs, $address_zipCode, $address, $address_number,$address2, $address_neighborhood, $address_city, $address_state, $address_country);
 				header("Location: ".BASE_URL."/clients");
 			}
-
-			//$data['user_info'] = $u->getInfo($id, $u->getCompany());
-			//$data['group_list'] = $p->getGroupList($u->getCompany());
 			
 			$data['client_info'] = $client->getInfo($id, $u->getCompany());
 			$this->loadTemplate('clients_edit', $data);
@@ -134,11 +129,9 @@ class clientsController extends controller
 		$c = new Clients();
 		$u->setLoggedUser();
 
-		if($u->hasPermission('client_view')){
-			//standy by
-
-			//$c->delete($id, $u->getCompany());
-			//header("Location: ".BASE_URL."/clients");
+		if($u->hasPermission('clients.view')){
+			$c->delete($id, $u->getCompany());
+			header("Location: ".BASE_URL."/clients");
 		} else {
 			header("Location: ".BASE_URL);
 			exit;
